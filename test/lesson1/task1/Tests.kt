@@ -100,7 +100,7 @@ class Tests {
     }
 
     @Test
-    @Tag("2") 
+    @Tag("2")
     fun numberRevert() {
         assertEquals(874, numberRevert(478))
         assertEquals(201, numberRevert(102))
