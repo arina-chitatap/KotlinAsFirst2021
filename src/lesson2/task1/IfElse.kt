@@ -69,7 +69,7 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
 fun ageDescription(age: Int): String {
-    val word = when {
+    val word: String = when {
         age % 100 in 10..20 -> "лет"
         age % 10 == 0 -> "лет"
         age % 10 == 1 -> "год"
@@ -131,6 +131,7 @@ fun rookOrBishopThreatens(
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+
 
 /**
  * Средняя (3 балла)
