@@ -178,8 +178,19 @@ fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
-
+fun factorize(n: Int): List<Int> {
+val list: MutableList<Int> = mutableListOf()
+var n = n
+var i = 2
+while (n != 1) {
+    if (n % i == 0) {
+        list.add(i)
+        n /= i
+    }
+    else i++
+}
+return list
+}
 /**
  * Сложная (4 балла)
  *
@@ -187,7 +198,7 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*")
 
 /**
  * Средняя (3 балла)
