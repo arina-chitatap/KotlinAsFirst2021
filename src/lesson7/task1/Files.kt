@@ -99,7 +99,23 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
  *
  */
 fun sibilants(inputName: String, outputName: String) {
-    TODO()
+    val lst = listOf('ж', 'ч', 'ш', 'щ', 'Ж', 'Ч', 'Ш', 'Щ')
+    val abc = mapOf('ы' to 'и', 'Ы' to 'И', 'я' to 'а', 'Я' to 'А', 'ю' to 'у', 'Ю' to 'У')
+    val error = Regex("""[жчшщЖЧШЩ][ыюяЫЮЯ]""")
+    val result = StringBuilder()
+    var last = '0'
+    File(inputName).forEachLine { it ->
+        if (error.containsMatchIn(it)) {
+            for (i in it) {
+                if (last in lst && i in abc) result.append(abc[i])
+                else result.append(i)
+                last = i
+            }
+            result.appendLine()
+        } else result.appendLine(it)
+    }
+    File(outputName).writeText(result.toString())
+
 }
 
 /**
