@@ -63,7 +63,14 @@ fun alignFile(inputName: String, lineLength: Int, outputName: String) {
  * Подчёркивание в середине и/или в конце строк значения не имеет.
  */
 fun deleteMarked(inputName: String, outputName: String) {
-    TODO()
+    File(outputName).bufferedWriter().use {
+        for (line in File(inputName).readLines()) {
+            if (!line.startsWith("_")) {
+                it.write(line)
+                it.newLine()
+            }
+        }
+    }
 }
 
 /**
@@ -233,9 +240,24 @@ fun transliterate(inputName: String, dictionary: Map<Char, String>, outputName: 
  * Обратите внимание: данная функция не имеет возвращаемого значения
  */
 fun chooseLongestChaoticWord(inputName: String, outputName: String) {
-    TODO()
+    val writer = File(outputName).bufferedWriter()
+    var maxlength = 0
+    val result = mutableListOf<String>()
+    for (line in File(inputName).readLines()) {
+        if (line.lowercase().toSet().size == line.lowercase().length) {
+            if (line.length > maxlength) {
+                result.clear()
+                result.add(line)
+                maxlength = line.length
+            } else if (line.length == maxlength) result.add(line)
+        }
+    }
+    for (i in result) {
+        if (i != result.last()) writer.append(i, ", ")
+        else writer.write(i)
+    }
+    writer.close()
 }
-
 /**
  * Сложная (22 балла)
  *
